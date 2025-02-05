@@ -9,6 +9,8 @@ std::streampos  getFileSize(std::ifstream& file)
     file.seekg(0, std::ios::end);
     size = file.tellg();
     file.seekg(0, std::ios::beg);
+    if (size == -1)
+        return (0);
     return (size);
 }
 
@@ -24,6 +26,8 @@ bool readInfileToBuf(char *fileName, std::string& buf)
         return (0);
     }
     infileSize = getFileSize(infile);
+    if (!infileSize)
+        return (0);
     buf.resize(infileSize);
     infile.read(&buf[0], infileSize);
     infile.close();
