@@ -1,13 +1,10 @@
-NAME = zombie
+NAME = harlFiler
 
 CC = c++
 CPPFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
-SRCDIR = ./srcs
-SRCS =	$(SRCDIR)/main.cpp \
-		$(SRCDIR)/Zombie.cpp \
-		$(SRCDIR)/randomChump.cpp \
-		$(SRCDIR)/newZombie.cpp
+SRCS =	main.cpp \
+		Harl.cpp
 
 OBJDIR = ./build
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
