@@ -22,7 +22,7 @@ bool readInfileToBuf(char *fileName, std::string& buf)
     infile.open(fileName);
     if (infile.fail())
     {
-        std::cerr << fileName << "No such file or directory\n";
+        std::cerr << fileName << ": No such file or directory\n";
         return (0);
     }
     infileSize = getFileSize(infile);
@@ -60,12 +60,19 @@ bool writeToOutFile(std::string buf, char *fileName)
 int main(int argc, char **argv)
 {
     std::string buf = "";
-
     if (argc != 4)
     {
         std::cerr << "Incorrect number of args\n";
-        return (0);
+        return (1);
     }
+    for (int i = 0; i < argc; i++)
+    {
+        if (!argv[i] || !argv[i][0])
+        {
+            std::cerr << "String cannot be empty\n";
+            return (1);
+        }
+    } 
     if (!readInfileToBuf(argv[1], buf))
         return (1);
     replaceStrs(buf, argv[2], argv[3]);
